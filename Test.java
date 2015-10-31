@@ -20,6 +20,11 @@ public class Test {
 		String s = (list.isEmpty())? "Empty" : "Not Empty";
 		System.out.println (s);
 		
+		ErrorMessage error;
+		obj = list.get(0);
+		error = obj.getError();
+		System.out.println(error.toString());
+		
 		list.add("a");
 		list.add("b");
 		list.add("c");
