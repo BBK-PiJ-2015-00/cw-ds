@@ -3,10 +3,11 @@ public class ArrayList implements List {
 	private int size;
 	
 	private ErrorMessage testBounds(int index) {
-		if(size==0 || index<0 || index>=this.size)
+		if(size==0) {
+			return ErrorMessage.EMPTY_STRUCTURE;
+		} else if(index<0 || index>=this.size) {
 			return ErrorMessage.INDEX_OUT_OF_BOUNDS;
-		
-		else
+		} else
 			return ErrorMessage.NO_ERROR;
 	}
 		
@@ -59,7 +60,7 @@ public class ArrayList implements List {
 	
 	public ReturnObject add(int index, Object item) {
 		ErrorMessage em = this.testBounds(index);
-		if(em.toString()!="NO_ERROR")
+		if(em.toString()=="INDEX_OUT_OF_BOUNDS")
 			return new ReturnObjectImpl(em);
 		
 		if(item==null)
