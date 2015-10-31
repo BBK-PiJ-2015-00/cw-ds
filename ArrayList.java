@@ -2,12 +2,12 @@ public class ArrayList implements List {
 	private ReturnObject[] objectArray;
 	private int size;
 	
-	private boolean outBounds(int index) {
-		if(size==0 || index>=size || index<0)
-			return true;
+	private ErrorMessage testBounds(int index) {
+		if(size==0 || index<0 || index>=this.size)
+			return ErrorMessage.INDEX_OUT_OF_BOUNDS;
 		
 		else
-			return false;
+			return ErrorMessage.NO_ERROR;
 	}
 		
 	public ArrayList() {
@@ -24,16 +24,17 @@ public class ArrayList implements List {
 	}
 	
 	public ReturnObject get(int index) {
-		if(this.outBounds(index)) {
-			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		}		
+		ErrorMessage em = this.testBounds(index);
+		if(em.toString()!="NO_ERROR")
+			return new ReturnObjectImpl(em);
+		
 		return objectArray[index];
 	}
 	
 	public ReturnObject remove(int index) {
-		if(this.outBounds(index)) {
-			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		}
+		ErrorMessage em = this.testBounds(index);
+		if(em.toString()!="NO_ERROR")
+			return new ReturnObjectImpl(em);
 		
 		ReturnObject object = this.get(index);
 		if(object.hasError())
@@ -57,9 +58,9 @@ public class ArrayList implements List {
 	}
 	
 	public ReturnObject add(int index, Object item) {
-		if(this.outBounds(index)) {
-			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		}
+		ErrorMessage em = this.testBounds(index);
+		if(em.toString()!="NO_ERROR")
+			return new ReturnObjectImpl(em);
 		
 		if(item==null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
