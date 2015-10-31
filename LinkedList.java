@@ -3,10 +3,11 @@ public class LinkedList implements List {
 	private LinkedList next;
 	
 	private ErrorMessage testBounds(int index) {
-		if(object==null || index<0 || index>=this.size())
+		if(object==null) {
+			return ErrorMessage.EMPTY_STRUCTURE;
+		} if(index<0 || index>=this.size()) {
 			return ErrorMessage.INDEX_OUT_OF_BOUNDS;
-		
-		else
+		} else
 			return ErrorMessage.NO_ERROR;
 	}
 	
@@ -68,7 +69,7 @@ public class LinkedList implements List {
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		ErrorMessage em = this.testBounds(index);
-		if(em.toString()!="NO_ERROR")
+		if(em.toString()=="INDEX_OUT_OF_BOUNDS")
 			return new ReturnObjectImpl(em);
 		
 		ReturnObjectImpl toAdd = new ReturnObjectImpl(item);
@@ -89,12 +90,10 @@ public class LinkedList implements List {
 	public ReturnObject add(Object item) {
 		if(item==null) {
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-		}
-		if(this.object==null) {
+		} else if(this.object==null) {
 			object = new ReturnObjectImpl(item);
 			return null;
-		}
-		if(this.next==null) {
+		} else if(this.next==null) {
 			ReturnObjectImpl toAdd = new ReturnObjectImpl(item);
 			this.next = new LinkedList(toAdd);
 			return null;
