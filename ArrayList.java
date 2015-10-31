@@ -16,6 +16,15 @@ public class ArrayList implements List {
 		this.size = 0;
 	}
 	
+	public ArrayList(ReturnObject[] array) {
+		this.objectArray = array;
+		this.size = array.length;
+	}
+	
+	public ReturnObject[] getArray() {
+		return this.objectArray;
+	}
+	
 	public boolean isEmpty() {
 		return this.size==0;
 	}

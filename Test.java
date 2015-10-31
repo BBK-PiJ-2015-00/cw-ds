@@ -9,9 +9,30 @@ public class Test {
 	private void launch() {
 		List array = new ArrayList();
 		List linked = new LinkedList();
+		FunctionalList functionalArray = new FunctionalArrayList();
 		
 		//testList(array);
-		testList(linked);
+		//testList(linked);
+		testFunctional(functionalArray);		
+	}
+	
+	private void testFunctional(FunctionalList list) {
+		testList(list);
+		
+		ReturnObject obj = new ReturnObjectImpl();
+		obj = list.head();
+		if(obj.hasError()) {			
+			ErrorMessage error = obj.getError();
+			System.out.println(error.toString());			
+		} else {
+			System.out.println("Head\t" + obj.getReturnValue());
+			
+			FunctionalList theRest = list.rest();
+			System.out.print("Rest(" + theRest.size() + ")");
+			for(int i = 0; i < theRest.size(); i++) {
+				System.out.print("\t" + theRest.get(i).getReturnValue() + "\n");
+			}
+		}
 	}
 	
 	private void testList(List list) {
@@ -43,12 +64,14 @@ public class Test {
 		list.remove(3);
 		obj = list.get(89);
 		
-		ErrorMessage EM = obj.getError();		
+		error = obj.getError();		
 		
-		System.out.println(EM.toString());
+		System.out.println(error.toString());
 		
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(i + ": " + list.get(i).getReturnValue());
 		}
+		
+		error = null;
 	}
 }
