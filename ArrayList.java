@@ -59,15 +59,18 @@ public class ArrayList implements List {
 	}
 	
 	public ReturnObject add(int index, Object item) {
-		ErrorMessage em = this.testBounds(index);
-		if(em.toString()=="INDEX_OUT_OF_BOUNDS")
-			return new ReturnObjectImpl(em);
+		if(size==0 && index==0) {
+			return this.add(item);
+		}
+		
+		if(index<0 || index>=this.size)
+			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		
 		if(item==null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		size++;
-		
+				
 		ReturnObject[] temp = objectArray;
 		objectArray = new ReturnObject[size];
 		

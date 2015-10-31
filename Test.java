@@ -10,7 +10,7 @@ public class Test {
 		List array = new ArrayList();
 		List linked = new LinkedList();
 		
-		testList(array);
+		//testList(array);
 		testList(linked);
 	}
 	
@@ -21,11 +21,16 @@ public class Test {
 		System.out.println (s);
 		
 		ErrorMessage error;
-		obj = list.get(0);
-		error = obj.getError();
-		System.out.println(error.toString());
+		//obj = list.remove(0);
+		obj = list.add(0,"a");
+		if(obj!=null) {
+			error = obj.getError();
+			System.out.println(error.toString());
+		} else {
+			System.out.println("success");
+		}
 		
-		list.add("a");
+		//list.add("a");
 		list.add("b");
 		list.add("c");
 		list.add("d");

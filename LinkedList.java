@@ -65,12 +65,14 @@ public class LinkedList implements List {
 	}
 	
 	public ReturnObject add(int index, Object item) {
+		if(object==null && index==0)
+			return this.add(item);
+		
 		if(item==null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
-		ErrorMessage em = this.testBounds(index);
-		if(em.toString()=="INDEX_OUT_OF_BOUNDS")
-			return new ReturnObjectImpl(em);
+		if(index<0 || index>=this.size())
+			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		
 		ReturnObjectImpl toAdd = new ReturnObjectImpl(item);
 		LinkedList current = this;
