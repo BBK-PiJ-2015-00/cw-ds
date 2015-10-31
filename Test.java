@@ -15,13 +15,19 @@ public class Test {
 	}
 	
 	private void testList(List list) {
-		ReturnObject obj = new ReturnObjectImpl();		
+		ReturnObject obj = new ReturnObjectImpl();
+
+		String s = (list.isEmpty())? "Empty" : "Not Empty";
+		System.out.println (s);
 		
 		list.add("a");
 		list.add("b");
 		list.add("c");
 		list.add("d");
 		list.add("e");
+		
+		s = (list.isEmpty())? "Empty" : "Not Empty";
+		System.out.println (s);
 		
 		list.add(2, "z");
 		list.remove(3);
