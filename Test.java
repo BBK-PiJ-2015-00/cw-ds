@@ -8,8 +8,10 @@ public class Test {
 	
 	private void launch() {
 		List array = new ArrayList();
+		List linked = new LinkedList();
 		
 		testList(array);
+		testList(linked);
 	}
 	
 	private void testList(List list) {
@@ -22,7 +24,8 @@ public class Test {
 		list.add("e");
 		
 		list.add(2, "z");
-		obj = list.remove(3);
+		list.remove(3);
+		obj = list.get(89);
 		
 		ErrorMessage EM = obj.getError();		
 		
