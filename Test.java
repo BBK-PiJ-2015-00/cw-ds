@@ -10,10 +10,12 @@ public class Test {
 		List array = new ArrayList();
 		List linked = new LinkedList();
 		FunctionalList functionalArray = new FunctionalArrayList();
+		FunctionalList functionalLinked = new FunctionalLinkedList();
 		
 		//testList(array);
 		//testList(linked);
-		testFunctional(functionalArray);		
+		testFunctional(functionalArray);
+		testFunctional(functionalLinked);
 	}
 	
 	private void testFunctional(FunctionalList list) {

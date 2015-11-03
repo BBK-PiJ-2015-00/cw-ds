@@ -16,6 +16,19 @@ public class LinkedList implements List {
 		this.next = null;
 	}
 	
+	public LinkedList(LinkedList linkedList) {
+		this.object = linkedList.object;
+		this.next = linkedList.next;
+	}	
+	
+	public ReturnObject getObject() {
+		return this.object;
+	}
+	
+	public LinkedList getNext() {
+		return this.next;
+	}
+	
 	public LinkedList(ReturnObjectImpl object) {
 		this.object = object;
 		this.next = null;
