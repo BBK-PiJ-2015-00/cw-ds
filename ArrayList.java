@@ -42,10 +42,11 @@ public class ArrayList implements List {
 	}
 	
 	public ReturnObject remove(int index) {
+		/**		
 		ErrorMessage em = this.testBounds(index);
 		if(em.toString()!="NO_ERROR")
 			return new ReturnObjectImpl(em);
-		
+		*/
 		ReturnObject object = this.get(index);
 		if(object.hasError())
 			return object;
