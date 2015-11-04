@@ -15,8 +15,11 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 	}
 	
 	public FunctionalList rest() {
-		LinkedList result = super.getNext();
-
-		return new FunctionalLinkedList(result);
+		if(super.getNext()==null) {
+			return new FunctionalLinkedList();
+		} else {
+			LinkedList result = super.getNext();
+			return new FunctionalLinkedList(result);
+		}
 	}
 }
