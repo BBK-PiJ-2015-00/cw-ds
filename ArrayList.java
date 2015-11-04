@@ -63,13 +63,13 @@ public class ArrayList implements List {
 		return object;
 	}
 	
-	public ReturnObject add(int index, Object item) {
+	public ReturnObject add(int index, Object item) {		
 		if(size==0 && index==0) {
 			return this.add(item);
 		}
 		
 		if(index<0 || index>this.size)
-			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);	
 		
 		if(item==null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);

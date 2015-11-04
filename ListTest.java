@@ -115,10 +115,16 @@ public class ListTest {
 		assertNull(array.add(0, "new first"));
 		assertNull(linked.add(0, "new first"));
 		
-		int aIndex = array.size() - 1;
-		int lIndex = linked.size() - 1;
-		assertEquals("new end",array.get(aIndex).getReturnValue());
-		assertEquals("new end",linked.get(lIndex).getReturnValue());
+		int arrayEnd = array.size() - 1;
+		int linkedEnd = linked.size() - 1;
+		assertEquals("new end",array.get(arrayEnd).getReturnValue());
+		assertEquals("new end",linked.get(linkedEnd).getReturnValue());
+		
+		assertEquals("new first",array.get(0).getReturnValue());
+		assertEquals("new first",linked.get(0).getReturnValue());
+		
+		assertEquals("new middle",array.get(3).getReturnValue());
+		assertEquals("new middle",linked.get(3).getReturnValue());
 	}
 	
 	@Test
@@ -147,6 +153,11 @@ public class ListTest {
 		assertEquals(error, linked.remove(100).getError());
 		assertEquals(error, array.remove(-1).getError());
 		assertEquals(error, linked.remove(-1).getError());
+		
+		//multiple errors should prioritise INDEX_OUT_OF_BOUNDS not INVALID_ARGUMENT 
+		Object obj = null;	
+		assertEquals(error, array.add(100,obj).getError());
+		assertEquals(error, linked.add(100,obj).getError());
 	}
 	
 	@Test
@@ -158,7 +169,7 @@ public class ListTest {
 		assertEquals(error, linked.add(obj).getError());
 		
 		assertEquals(error, array.add(0,obj).getError());
-		assertEquals(error, linked.add(0,obj).getError());
+		assertEquals(error, linked.add(0,obj).getError());		
 	}
 	
 	@Test
