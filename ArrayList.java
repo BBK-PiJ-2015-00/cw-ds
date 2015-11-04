@@ -73,7 +73,7 @@ public class ArrayList implements List {
 			return this.add(item);
 		}
 		
-		if(index<0 || index>=this.size)
+		if(index<0 || index>this.size)
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		
 		if(item==null)

@@ -105,7 +105,7 @@ public class ListTest {
 		
 		testAdd();
 		
-		//assertNull(array.add(6,"new end")); BUG: cannot enter as last value
+		assertNull(array.add(6,"new end")); BUG: cannot enter as last value
 		//assertNull(linked.add(6,"new end")); BUG cannot enter as last value
 		
 		assertNull(array.add(2,"new middle"));
