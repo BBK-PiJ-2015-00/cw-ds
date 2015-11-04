@@ -39,12 +39,13 @@ public class LinkedList implements List {
 	}
 	
 	public int size() {
-		if(object==null)
+		if(object == null) {
 			return 0;
-		if(next==null)
+		} else if (next == null) {
 			return 1;
+		}
 		
-		return 1+next.size();
+		return 1 + next.size();
 	}
 	
 	public ReturnObject get(int index) {
@@ -95,18 +96,31 @@ public class LinkedList implements List {
 		if(item==null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
-		if(index<0 || index>=this.size())
+		if(index<0 || index>this.size())
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		
 		ReturnObjectImpl toAdd = new ReturnObjectImpl(item);
+		LinkedList newItem = new LinkedList(toAdd);
+		
+		if(index==0) {
+			LinkedList temp = new LinkedList(this);
+			this.next = temp;
+			this.object = toAdd;			
+			return null;
+		}			
+		
 		LinkedList current = this;
 		LinkedList last = current;
 		for(int i = 0; i < index; i++) {
 			last = current;
-			current = current.next;
-		}
+			if(current.next!=null) {
+				current = current.next;
+			} else {
+				current.next = newItem;
+				return null;
+			}
+		}		
 		
-		LinkedList newItem = new LinkedList(toAdd);
 		last.next = newItem;
 		newItem.next = current;
 		

@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+//java org.junit.runner.JUnitCore ListTest
 
 public class ListTest {
 	public List array;
@@ -105,14 +106,19 @@ public class ListTest {
 		
 		testAdd();
 		
-		assertNull(array.add(6,"new end")); BUG: cannot enter as last value
-		//assertNull(linked.add(6,"new end")); BUG cannot enter as last value
+		assertNull(array.add(6,"new end"));
+		assertNull(linked.add(6,"new end"));
 		
 		assertNull(array.add(2,"new middle"));
 		assertNull(linked.add(2,"new middle"));
 		
 		assertNull(array.add(0, "new first"));
 		assertNull(linked.add(0, "new first"));
+		
+		int aIndex = array.size() - 1;
+		int lIndex = linked.size() - 1;
+		assertEquals("new end",array.get(aIndex).getReturnValue());
+		assertEquals("new end",linked.get(lIndex).getReturnValue());
 	}
 	
 	@Test
