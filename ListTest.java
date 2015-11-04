@@ -87,15 +87,15 @@ public class ListTest {
 		assertEquals("zero",linked.remove(0).getReturnValue());
 		
 		assertEquals("three",array.remove(1).getReturnValue());
-		//assertEquals("three",linked.remove(1).getReturnValue()); //BUG problem when removing 0 not adjusting other values.
+		assertEquals("three",linked.remove(1).getReturnValue());
 		
 		assertEquals(1,array.size());
-		//assertEquals(1,linked.size());
+		assertEquals(1,linked.size());
 		
 		assertEquals("one",array.remove(0).getReturnValue());
-		//assertEquals("one",linked.remove(0).getReturnValue());
+		assertEquals("one",linked.remove(0).getReturnValue());
 		
-		//testIsEmpty();
+		testIsEmpty();
 	}
 	
 	@Test

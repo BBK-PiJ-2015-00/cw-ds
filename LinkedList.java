@@ -65,6 +65,17 @@ public class LinkedList implements List {
 		if(em.toString()!="NO_ERROR")
 			return new ReturnObjectImpl(em);
 		
+		if(index==0) {		
+			ReturnObject result = this.object;
+			if(this.next==null) {
+				this.object = null;
+			} else {
+				this.object = this.next.getObject();
+				this.next = this.next.getNext();
+			}
+			return result;
+		}
+		
 		LinkedList current = this;
 		LinkedList last = current;
 		for(int i = 0; i < index; i++) {
