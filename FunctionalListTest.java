@@ -3,18 +3,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-//java org.junit.runner.JUnitCore ListTest
+//java org.junit.runner.JUnitCore FunctionalListTest
 
-public class ListTest {
-	public List array;
-	public List linked;
+public class FunctionalListTest {
+	public FunctionalList array;
+	public FunctionalList linked;
 	
 	@Before
 	public void createLists() {
-		array = new ArrayList();
-		linked = new LinkedList();
-	}
-	
+		array = new FunctionalArrayList();
+		linked = new FunctionalLinkedList();
+	}	
 	
 	
 	@Test
@@ -22,8 +21,8 @@ public class ListTest {
 		assertNotNull(array);
 		assertNotNull(linked);
 		
-		assertTrue(array.getClass()==ArrayList.class);
-		assertTrue(linked.getClass()==LinkedList.class);		
+		assertTrue(array.getClass()==FunctionalArrayList.class);
+		assertTrue(linked.getClass()==FunctionalLinkedList.class);		
 	}	
 	
 	@Test
@@ -181,11 +180,38 @@ public class ListTest {
 		
 		assertEquals(error, array.remove(0).getError());
 		assertEquals(error, linked.remove(0).getError());
+		
+		assertEquals(error, array.head().getError());
+		assertEquals(error, linked.head().getError());
 	}
 	
+	@Test
+	public void testHead() {
+		testAdd();
+		
+		assertEquals("zero", array.head().getReturnValue());
+		assertEquals("zero", linked.head().getReturnValue());
+	}
 	
-	
-	
+	@Test
+	public void testRest() {
+		//empty lists
+		assertEquals(0, array.rest().size());
+		assertEquals(0, linked.rest().size());
+		
+		testAdd();
+		assertEquals(4, array.rest().size());
+		assertEquals(4, linked.rest().size());
+		
+		assertEquals("one", array.rest().get(0).getReturnValue());
+		assertEquals("one", linked.rest().get(0).getReturnValue());
+		
+		assertEquals("two", array.rest().get(1).getReturnValue());
+		assertEquals("two", linked.rest().get(1).getReturnValue());
+		
+		assertEquals("four", array.rest().get(3).getReturnValue());
+		assertEquals("four", linked.rest().get(3).getReturnValue());
+	}
 }
 
 

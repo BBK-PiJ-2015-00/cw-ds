@@ -75,7 +75,7 @@ public class ArrayList implements List {
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		
 		size++;
-				
+
 		ReturnObject[] temp = objectArray;
 		objectArray = new ReturnObject[size];
 		
