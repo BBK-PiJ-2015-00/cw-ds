@@ -148,6 +148,22 @@ public class TestImprovedStack {
 		
 		testIsEmpty();
 	}
+	
+	@Test
+	public void testRemove3() {
+		testPush();
+		
+		Object obj = null;
+		stack.remove(obj);
+		
+		assertEquals("four", stack.pop().getReturnValue());
+		assertEquals("three", stack.pop().getReturnValue());
+		assertEquals("two", stack.pop().getReturnValue());		
+		assertEquals("one", stack.pop().getReturnValue());	
+		assertEquals("zero", stack.pop().getReturnValue());
+		
+		testIsEmpty();
+	}
 }
 
 
